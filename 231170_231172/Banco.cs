@@ -68,7 +68,12 @@ namespace _231170_231172
                 Comando = new MySqlCommand("CREATE DATABASE IF NOT EXISTS marcas"
                     + "(id integer auto_increment primary key, "
                     + "(marca char (20))", Conexao);
-                Comando.ExecuteNonQuery();                  
+                Comando.ExecuteNonQuery();   
+                
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXIXTS Categorias " 
+                    +"(id integer auto_increment primary key, "
+                    +"categoria char(20))", Conexao);
+                Comando.ExecuteNonQuery();
                
                 FecharConexao();
             }
