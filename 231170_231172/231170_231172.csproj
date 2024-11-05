@@ -106,6 +106,7 @@
       <DependentUpon>FrmMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="models\Cidade.cs" />
+    <Compile Include="models\Cliente.cs" />
     <Compile Include="models\Marca.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
