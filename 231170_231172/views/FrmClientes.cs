@@ -30,7 +30,19 @@ namespace _231170_231172.views
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "") return;
 
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes)
+            {
+                cl = new Cliente()
+                {
+                    id - int.Parse(txtID.Text)
+                };
+                cl.Excluir();
+
+                limpaControles();
+                carregarGrid("");
+            }
         }
 
         private void FrmClientes_Load(object sender, EventArgs e)
@@ -69,12 +81,12 @@ namespace _231170_231172.views
         {
             if (txtNome.Text == "") return;
 
-            cl = new Cliente();
+            cl = new Cliente()
             {
                 txtNome = txtNome.Text,
                     idCidade = (int)cboCidades.SelectedValue,
                     dataNasc = dtpDataNasc.Value,
-                    renda = double.Parse(txtRenda,Text),
+                    renda = double.Parse(txtRenda.Text),
                     cpf = mskCPF.Text,
                     foto = picFoto.ImageLocation,
                     venda = chkVenda.Checked
@@ -100,4 +112,41 @@ namespace _231170_231172.views
                 picFoto.ImageLocation = dgvClientes.CurrentRow.Cells["foto"].Value.ToString();
         }
     }
-}
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            cl = new Cliente()
+            {
+                id = int.Parse(txtID.Text),
+                nome = txtNome.Text,
+                idCidade = (int)cboCidades.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFoto.ImageLocation,
+                venda = chkVenda.Checked,
+            };
+            cl.Alterar();
+
+            limpaControles();
+            carregarGrid("");
+        }
+    }
