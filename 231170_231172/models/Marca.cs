@@ -5,9 +5,8 @@ using MySql.Data.MySqlClient;
 
 namespace _231170_231172.models
 {
-    internal class Marca
-    {
-        public class Marcas
+    
+        public class Marca
         {
             public int id { get; set; }
 
@@ -101,5 +100,5 @@ namespace _231170_231172.models
                 }
             }
         }
-    }
+    
 }

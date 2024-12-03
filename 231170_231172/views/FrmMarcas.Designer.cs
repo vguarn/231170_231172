@@ -37,11 +37,11 @@
             this.btnIncluir = new System.Windows.Forms.Button();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.btnPesquisar = new System.Windows.Forms.Button();
-            this.dgvCidades = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCidades)).BeginInit();
+            this.dgvMarca = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMarca
@@ -102,7 +102,6 @@
             this.btnIncluir.TabIndex = 7;
             this.btnIncluir.Text = "Incluir";
             this.btnIncluir.UseVisualStyleBackColor = true;
-            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // txtPesquisar
             // 
@@ -119,14 +118,7 @@
             this.btnPesquisar.TabIndex = 9;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
-            // 
-            // dgvCidades
-            // 
-            this.dgvCidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCidades.Location = new System.Drawing.Point(55, 271);
-            this.dgvCidades.Name = "dgvCidades";
-            this.dgvCidades.Size = new System.Drawing.Size(517, 150);
-            this.dgvCidades.TabIndex = 10;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // label1
             // 
@@ -155,15 +147,23 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Digite o nome da marca para pesquisa:";
             // 
+            // dgvMarca
+            // 
+            this.dgvMarca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMarca.Location = new System.Drawing.Point(55, 279);
+            this.dgvMarca.Name = "dgvMarca";
+            this.dgvMarca.Size = new System.Drawing.Size(517, 150);
+            this.dgvMarca.TabIndex = 14;
+            // 
             // FrmMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvMarca);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvCidades);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.btnIncluir);
@@ -175,7 +175,7 @@
             this.Controls.Add(this.txtMarca);
             this.Name = "FrmMarcas";
             this.Text = "FrmMarcas";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCidades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,9 +192,10 @@
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.Button btnPesquisar;
-        private System.Windows.Forms.DataGridView dgvCidades;
+        private System.Windows.Forms.DataGridView dgvMarcas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dgvMarca;
     }
 }

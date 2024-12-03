@@ -29,12 +29,18 @@ namespace _231170_231172.views
         {
             m = new Marca()
             {
-                Marcas = pesquisa
+                marca = pesquisa
             };
-            dgvCidades.DataSource = m.Consultar();
+            dgvMarca.DataSource  = m.Consultar();
 
         }
-        private void frmMarcas_load(object sender, EventArgs e)
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+
+        }
+    
+    private void frmMarcas_load(object sender, EventArgs e)
         {
             LimpaControles();
             carregarGrid("");
@@ -65,13 +71,12 @@ namespace _231170_231172.views
 
         }
 
-        private void DgvCidades_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvMarca_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCidades.Rows.Count > 0)
+            if (dgvMarca.Rows.Count > 0)
             {
-                txtID.Text = dgvCidades.CurrentRow.Cells["id"].Value.ToString();
-                txtNome.Text = dgvCidades.CurrentRow.Cells["Nome"].Value.ToString();
-                txtUF.Text = dgvCidades.CurrentRow.Cells["UF"].Value.ToString();
+                txtID.Text = dgvMarca.CurrentRow.Cells["id"].Value.ToString();
+                txtMarca.Text = dgvMarca.CurrentRow.Cells["Nome"].Value.ToString();
             }
         }
 
@@ -79,13 +84,12 @@ namespace _231170_231172.views
         {
             if (txtID.Text == String.Empty) return;
 
-            c = new Cidade()
+            m = new Marca()
             {
                 id = int.Parse(txtID.Text),
-                nome = txtNome.Text,
-                uf = txtUF.Text
+                marca = txtMarca.Text
             };
-            c.Alterar();
+            m.Alterar();
 
             LimpaControles();
             carregarGrid("");
@@ -98,11 +102,11 @@ namespace _231170_231172.views
             if (MessageBox.Show("Deseja excluir a cidade?", "Exclusão",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                c = new Cidade()
+                m = new Marca()
                 {
                     id = int.Parse(txtID.Text)
                 };
-                c.Excluir();
+                m.Excluir();
 
                 LimpaControles();
                 carregarGrid("");
@@ -113,16 +117,16 @@ namespace _231170_231172.views
         {
             LimpaControles();
             carregarGrid("");
-        }
-
-        private void btnPesquisar_Click(object sender, EventArgs e)
-        {
-            carregarGrid(txtPesquisa.Text);
-        }
+        }     
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnPesquisar_Click_1(object sender, EventArgs e)
+        {
+            carregarGrid(txtPesquisar.Text);
         }
     }
 

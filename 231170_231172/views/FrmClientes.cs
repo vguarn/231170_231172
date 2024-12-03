@@ -2,14 +2,14 @@
 using System.Data;
 using System.Windows.Forms;
 using _231170_231172.models;
-using _231170_231172.Models;
+using _231170_231172;
 using Vendas.Models;
 
 namespace _231170_231172.views
 {
     public partial class FrmClientes : Form
     {
-        Cidade ci; 
+        Cidade ci;
         Cliente cl;
         public FrmClientes()
         {
@@ -24,20 +24,28 @@ namespace _231170_231172.views
             txtUF.Clear();
             mskCPF.Clear();
             txtRenda.Clear();
-            dtpDataNasc.Value = DataTime.Now;
+            dtpDataNasc.Value = DateTime.Now;
             picFoto.ImageLocation = "";
             chkVenda.Checked = false;
+        }
+
+        void carregarGrid(string pesquisa)
+        {
+            cl = new Cliente()
+            {
+                nome = pesquisa
+            };
+            dgvClientes.DataSource = cl.Consultar();
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
             if (txtID.Text == "") return;
 
-            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes)
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cl = new Cliente()
-                {
-                    id - int.Parse(txtID.Text)
-                };
+                cl = new Cliente();
+               
                 cl.Excluir();
 
                 limpaControles();
@@ -56,14 +64,15 @@ namespace _231170_231172.views
             carregarGrid("");
 
             dgvClientes.Columns["idCidade"].Visible = false;
-            dgvClientes.Columns["foto"],Visible = false;
+            dgvClientes.Columns["foto"].Visible = false;
+            
         }
 
         private void cboCidades_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboCidades.SelectedIndex != -1)
             {
-                DataRowView reg = (DataRowView) cboCidades.SelectedItem;
+                DataRowView reg = (DataRowView)cboCidades.SelectedItem;
                 txtUF.Text = reg["uf"].ToString();
             }
         }
@@ -83,13 +92,13 @@ namespace _231170_231172.views
 
             cl = new Cliente()
             {
-                txtNome = txtNome.Text,
-                    idCidade = (int)cboCidades.SelectedValue,
-                    dataNasc = dtpDataNasc.Value,
-                    renda = double.Parse(txtRenda.Text),
-                    cpf = mskCPF.Text,
-                    foto = picFoto.ImageLocation,
-                    venda = chkVenda.Checked
+                nome = txtNome.Text,
+                idCidade = (int)cboCidades.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFoto.ImageLocation,
+                venda = chkVenda.Checked
 
             };
             cl.Incluir();
@@ -99,19 +108,19 @@ namespace _231170_231172.views
 
         private void DgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvClientes.RowCount > 0) 
+            if (dgvClientes.RowCount > 0)
             {
                 txtID.Text = dgvClientes.CurrentRow.Cells["id"].Value.ToString();
                 txtNome.Text = dgvClientes.CurrentRow.Cells["nome"].Value.ToString();
                 cboCidades.Text = dgvClientes.CurrentRow.Cells["cidade"].Value.ToString();
-                txtUF.Text =  dgvClientes.CurrentRow.Cells["UF"].Value.ToString();
+                txtUF.Text = dgvClientes.CurrentRow.Cells["UF"].Value.ToString();
                 chkVenda.Checked = (bool)dgvClientes.CurrentRow.Cells["venda"].Value;
                 mskCPF.Text = dgvClientes.CurrentRow.Cells["cpf"].Value.ToString();
                 dtpDataNasc.Text = dgvClientes.CurrentRow.Cells["dataNasc"].ToString();
                 txtRenda.Text = dgvClientes.CurrentRow.Cells["renda"].Value.ToString();
                 picFoto.ImageLocation = dgvClientes.CurrentRow.Cells["foto"].Value.ToString();
+            }
         }
-    }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -126,7 +135,7 @@ namespace _231170_231172.views
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            carregarGrid(txtPesquisa.Text);
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -150,3 +159,5 @@ namespace _231170_231172.views
             carregarGrid("");
         }
     }
+
+}

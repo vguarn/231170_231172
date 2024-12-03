@@ -65,35 +65,35 @@ namespace _231170_231172
                     + "uf char (02))", Conexao);
                 Comando.ExecuteNonQuery();
 
-                Comando = new MySqlCommand("CREATE DATABASE IF NOT EXISTS Marcas"
+                Comando = new MySqlCommand("CREATE table IF NOT EXISTS Marcas"
                     + "(id integer auto_increment primary key, "
-                    + "(marca char (20))", Conexao);
+                    + "marca char (20))", Conexao);
                 Comando.ExecuteNonQuery();   
                 
-                Comando = new MySqlCommand("CREATE TABLE IF NOT EXIXTS Categorias " 
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXIsTS Categorias " 
                     +"(id integer auto_increment primary key, "
                     +"categoria char(20))", Conexao);
                 Comando.ExecuteNonQuery();
 
                 Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Clientes " +
-                    ("Id integer auto_increment primary key, " +
+                    "(Id integer auto_increment primary key, " +
                     "nome char (40), " +
                     "idCidade integer, " +
                     "dataNasc date, " + 
                     "renda decimal (10,2), " +
                     "cpf char (14), " +
-                    "foto varchar (100) " +
+                    "foto varchar (100), " +
                     "venda boolean)", Conexao);
                 Comando.ExecuteNonQuery();
 
                 Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Produtos " +
-                    ("Id integer auto_increment primary key, " +
+                    "(Id integer auto_increment primary key, " +
                     "descricao char (40), " +
                     "idCategoria integer, " +
                     "idMarca integer, " +
                     "estoque decimal (10,3), " +
                     "valorVenda decimal (10, 2), " +
-                    "foto varchar (100) " , Conexao);
+                    "foto varchar (100)) ", Conexao);
                 Comando.ExecuteNonQuery();
 
                 FecharConexao();

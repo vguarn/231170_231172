@@ -1,4 +1,5 @@
-﻿using _231170_231172.models;
+﻿using _231170_231172;
+using _231170_231172.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,12 +28,16 @@ namespace _231170_231172.views
             txtValor.Clear();
             txtEstoque.Clear();
             picFoto.ImageLocation = "";
- 
+
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        void carregarGrid(string pesquisa)
         {
-
+            p = new Produto()
+            {
+                descricao = pesquisa
+            };
+            dgvProdutos.DataSource = p.Consultar();
         }
 
         private void btnIncluir_Click(object sender, EventArgs e)
@@ -40,14 +45,14 @@ namespace _231170_231172.views
             {
                 if (txtCodigo.Text == "") return;
 
-                p  = new Produto()
+                p = new Produto()
                 {
-                    codigo = int.Parse(txtcodigo.Text),
-                    txtDescricao = txtDescricao.Text,
-                    txtValor = double.Parse(txtValor.Text),
-                    picFoto = picFoto.ImageLocation,
-                    txtEstoque = txtEstoque.Text
-                };
+                    id = int.Parse(txtCodigo.Text),
+                    descricao = txtDescricao.Text,
+                    valorVenda = double.Parse(txtValor.Text),
+                    foto = picFoto.ImageLocation,
+                    estoque = double.Parse(txtEstoque.Text)
+                    };
                 p.Incluir();
                 limpaControles();
                 carregarGrid("");
@@ -58,23 +63,23 @@ namespace _231170_231172.views
         private void btnAlterar_Click(object sender, EventArgs e)
         {
 
-                if (txtCodigo.Text == "") return;
+            if (txtCodigo.Text == "") return;
 
-                p = new Produto()
-                {
-                    Codigo = int.Parse(txtCodigo.Text),
-                    Descricao = txtDescricao.Text,
-                    Marca = (char)cboMarca.SelectedValue,
-                    Categoria = (char)cboMarca.SelectedValue,
-                    valor = double.Parse(txtValor.Text),
-                    Estoque = txtEstoque.Text,
-                    foto = picFoto.ImageLocation,
-                };
-                p.Alterar();
+            p = new Produto()
+            {
+                id = int.Parse(txtCodigo.Text),
+                descricao = txtDescricao.Text,
+                idMarca = (char)cboMarca.SelectedValue,
+                idCategoria = (char)cboMarca.SelectedValue,
+                valorVenda = double.Parse(txtValor.Text),
+                estoque = double.Parse(txtEstoque.Text),
+                foto = picFoto.ImageLocation,
+            };
+            p.Alterar();
 
-                limpaControles();
-                carregarGrid("");
-           
+            limpaControles();
+            carregarGrid("");
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -91,7 +96,7 @@ namespace _231170_231172.views
             {
                 p = new Produto()
                 {
-                    codigo - int.Parse(txtCodigo.Text)
+                    id = int.Parse(txtCodigo.Text)
                 };
                 p.Excluir();
 
@@ -107,7 +112,9 @@ namespace _231170_231172.views
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            carregarGrid(txtPesquisa.Text);
         }
     }
+
+
 }
